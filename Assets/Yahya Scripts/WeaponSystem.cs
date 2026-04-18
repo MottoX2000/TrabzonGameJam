@@ -28,7 +28,9 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] private float pistolRange = 15f;
     [SerializeField] private float pistolFireRate = 0.2f;
     [SerializeField] private int pistolDamage = 20;
+    [SerializeField] private int pistolBulletCost = 3;
     [SerializeField] private ParticleSystem pistolEffectPrefab;
+    [SerializeField] LayerMask enemyLayerMask;
 
     private float nextAttackTime = 0f;
 
@@ -93,6 +95,7 @@ public class WeaponSystem : MonoBehaviour
                 break;
             case WeaponType.Pistol:
                 nextAttackTime = Time.time + pistolFireRate;
+                TimeManager.Instance.RemoveTime(pistolBulletCost); // Consume bullets as time
                 PistolAttack();
                 break;
         }
@@ -110,7 +113,7 @@ public class WeaponSystem : MonoBehaviour
             if (enemy.CompareTag("Enemy"))
             {
                 // Apply damage to enemy
-                // enemy.GetComponent<EnemyHealth>()?.TakeDamage(knifeDamage);
+                enemy.GetComponent<Entity>()?.TakeDamage(knifeDamage);
                 Debug.Log("Slashed Enemy!");
             }
         }
@@ -129,21 +132,28 @@ public class WeaponSystem : MonoBehaviour
         // Visual
         if (pistolEffectPrefab != null)
         {
-            ParticleSystem particleSystem = Instantiate(pistolEffectPrefab, firePoint.position, Quaternion.identity);
+            ParticleSystem particleSystem = Instantiate(pistolEffectPrefab, firePoint.position + Vector3.back, Quaternion.identity);
             particleSystem.transform.forward = attackDir;
             particleSystem.Play();
             Destroy(particleSystem.gameObject, particleSystem.main.duration);
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(attackPos, attackDir, pistolRange);
+        RaycastHit2D hit = Physics2D.Raycast(attackPos, attackDir, pistolRange, enemyLayerMask);
 
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag("Enemy"))
             {
                 // Apply damage to enemy
-                hit.collider.GetComponent<Entity>()?.TakeDamage(pistolDamage);
-                Debug.Log($"Shot Enemy {hit.collider.name}!");
+                Helper.DoAfterDelay(0.14f, () =>
+                {
+                    hit.collider.GetComponent<Entity>()?.TakeDamage(pistolDamage);
+                    Debug.Log($"Shot Enemy {hit.collider.name}!");
+                });
+            }
+            else
+            {
+                Debug.Log($"Shot at {hit.collider.name} but it was not an enemy.");
             }
         }
     }

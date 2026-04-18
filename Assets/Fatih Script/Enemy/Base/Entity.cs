@@ -14,7 +14,6 @@ public abstract class Entity : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         Health -= damage;
-        TimeManager.Instance.RemoveTime(damage);
         if (Health <= 0) Die();
     }
 
