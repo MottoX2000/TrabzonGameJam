@@ -29,18 +29,11 @@ public class TimeManager : MonoBehaviour
     #region Private Methods
     void UpdateTimer()
     {
-        currentTime -= Time.deltaTime;
-        //Debug.Log("Current Time: " + currentTime);
-        //UIManager.Instance.UpdateTimer(currentTime);
+        currentTime -= Time.deltaTime;     
+        UIManager.Instance.UpdateTimer(currentTime);
 
-        //Death condition
-        if (currentTime <= 0)
-        {
-            currentTime = 0;
-            GameManager.Instance.GameOver();
-            // player ýn ölüm fonksiyonunu çaðýr ya da animasyonu oynat
-        }
-        else if (currentTime <= 10)
+        //Dangerous condition
+        if (currentTime <= 10)
         {
             GameManager.Instance.StartCriticalWarning();
         }
@@ -57,6 +50,10 @@ public class TimeManager : MonoBehaviour
     {
         // Remove effect
         currentTime -= timeToRemove;
+    }
+    public void SetTimer(float newTime)
+    {
+        currentTime = newTime;
     }
     #endregion
 }

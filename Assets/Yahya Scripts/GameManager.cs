@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // Game Over effect
+        TimeManager.Instance.SetTimer(0); // Ensure timer is at 0
         Debug.Log("Game Over!");
         Time.timeScale = 0; // For now
     }

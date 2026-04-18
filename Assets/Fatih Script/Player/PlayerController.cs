@@ -51,14 +51,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hitCollider.CompareTag("Item"))
             {
-                if (_player.CurrentWeapon != null)
-                {
-                    if (hitCollider.gameObject == _player.CurrentWeapon ||
-                        hitCollider.transform.IsChildOf(_player.CurrentWeapon.transform))
-                    {
-                        continue;
-                    }
-                }
+                // Buy Pistol system can be implemented here, for now we just log the interaction
 
                 Debug.Log(hitCollider.gameObject.name + " itemýyla etkileþime geçildi!");
                 break;
