@@ -34,6 +34,11 @@ public class WeaponSystem : MonoBehaviour
 
     private float nextAttackTime = 0f;
 
+    private void Start()
+    {
+        UIManager.Instance.UpdateCurrentWeapon(currentWeapon);
+    }
+
     private void Update()
     {
         HandleWeaponSwitching();
@@ -73,6 +78,8 @@ public class WeaponSystem : MonoBehaviour
                 else if (hasPistol)
                     EquipWeapon(WeaponType.Pistol);
             }
+
+            UIManager.Instance.UpdateCurrentWeapon(currentWeapon);
         }
     }
 

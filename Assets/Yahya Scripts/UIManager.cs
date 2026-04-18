@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] TextMeshProUGUI timerTXT;
+    [SerializeField] TextMeshProUGUI currentWeapon;
 
     private void Awake()
     {
@@ -19,6 +20,11 @@ public class UIManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
         timerTXT.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void UpdateCurrentWeapon(WeaponType weaponType)
+    {
+        currentWeapon.text = weaponType.ToString();
     }
     #endregion
 }

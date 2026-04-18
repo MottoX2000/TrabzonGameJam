@@ -1,11 +1,20 @@
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
     [Header("Temel istatistikler")]
     [SerializeField] private float _movementSpeed;
+
+    [Header("Dash Settings")]
+    [SerializeField] private float _dashMultiplier = 3f;
+    [SerializeField] private float _dashDuration = 0.2f;
+    [SerializeField] private float _dashCooldown = 1f;
+    [SerializeField] private int _dashTimeCost = 2;
+    private float _dashTimeCounter;
+    private float _dashCooldownCounter;
 
     [Header("Componenets")]
     private Rigidbody2D _rb;
@@ -24,6 +33,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (TimeManager.Instance.currentTime <= 0) Die();
+
+        TrackDashSystem();
     }
 
     void FixedUpdate()
@@ -36,9 +47,30 @@ public class Player : MonoBehaviour
         _moveInput = input;
     }
 
+    void TrackDashSystem()
+    {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && _dashCooldownCounter <= 0)
+        {
+            TimeManager.Instance?.RemoveTime(_dashTimeCost); // Dash time cost
+            _dashTimeCounter = _dashDuration;
+            _dashCooldownCounter = _dashCooldown;
+        }
+
+        if (_dashTimeCounter > 0)
+        {
+            _dashTimeCounter -= Time.deltaTime;
+        }
+
+        if (_dashCooldownCounter > 0)
+        {
+            _dashCooldownCounter -= Time.deltaTime;
+        }
+    }
+
     private void Move()
     {
-        Vector2 movement = _moveInput.normalized * _movementSpeed * Time.fixedDeltaTime;
+        float currentSpeed = (_dashTimeCounter > 0) ? _movementSpeed * _dashMultiplier : _movementSpeed;
+        Vector2 movement = _moveInput.normalized * currentSpeed * Time.fixedDeltaTime;
         _rb.MovePosition(_rb.position + movement);
         /*if (SoundManager.Instance != null)
             SoundManager.Instance.PlaySFX("PlayerDeath");*/
