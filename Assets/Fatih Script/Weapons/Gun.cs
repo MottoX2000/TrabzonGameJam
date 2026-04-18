@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
 
         if (bullet != null)
         {
-            bullet.Initialize(damage, attackRange);
+            bullet.Initialize(damage);
         }
     }
 }

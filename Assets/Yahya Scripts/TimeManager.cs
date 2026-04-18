@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-
     public static TimeManager Instance { get; private set; }
 
     [Header("Time Settings")]
@@ -31,13 +30,15 @@ public class TimeManager : MonoBehaviour
     void UpdateTimer()
     {
         currentTime -= Time.deltaTime;
-        UIManager.Instance.UpdateTimer(currentTime);
+        //Debug.Log("Current Time: " + currentTime);
+        //UIManager.Instance.UpdateTimer(currentTime);
 
         //Death condition
         if (currentTime <= 0)
         {
             currentTime = 0;
             GameManager.Instance.GameOver();
+            // player ýn ölüm fonksiyonunu çaðýr ya da animasyonu oynat
         }
         else if (currentTime <= 10)
         {

@@ -3,18 +3,18 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [Header("Özellikler")]
-    [SerializeField] private int damage;
-    [SerializeField] private float attackRange;
+    private int _damage;
+
+    public int Damage => _damage;
 
     void Start()
     {
         
     }
 
-    public void Initialize(int damage, float attackRange)
+    public void Initialize(int damage)
     {
-        this.damage = damage;
-        this.attackRange = attackRange;
+        this._damage = damage;
     }
 
     void Update()
