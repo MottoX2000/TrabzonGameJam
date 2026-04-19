@@ -276,6 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3048030575696980575}
   - component: {fileID: 757507316880924450}
+  - component: {fileID: -9098319008920282302}
   - component: {fileID: 7300242787862729351}
   - component: {fileID: 3683212641488974956}
   m_Layer: 6
@@ -322,6 +323,29 @@ MonoBehaviour:
   detectionRange: 5
   attackRange: 0.8
   attackCooldown: 1
+--- !u!114 &-9098319008920282302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031645627614222526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7c637c29ad31e4a922718f2f612b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieSoundController
+  hurtSounds:
+  - ZombieHurt1
+  - ZombieHurt2
+  - ZombieHurt3
+  walkSounds:
+  - ZombieWalk1
+  - ZombieWalk2
+  - ZombieWalk3
+  minIdleDelay: 3
+  maxIdleDelay: 7
+  walkSoundDelay: 0.6
 --- !u!50 &7300242787862729351
 Rigidbody2D:
   serializedVersion: 5
