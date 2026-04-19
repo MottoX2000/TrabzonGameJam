@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 757507316880924450}
   - component: {fileID: 7300242787862729351}
   - component: {fileID: 3683212641488974956}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Normal Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Zombie
   animator: {fileID: 8960381742273399649}
   _entityName: Zombie
-  _health: 25
+  _health: 22
   _movementSpeed: 2
   _rewardTime: 5
   _damage: 5
@@ -330,14 +330,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5031645627614222526}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

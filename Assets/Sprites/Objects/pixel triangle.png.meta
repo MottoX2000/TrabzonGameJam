@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 68af90a547c8a8b40995a83fc8566e8c
+guid: 14f807b21a05b844f922f0bb4185a4d7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2711212194386128092
-    second: enektar_0
+      213: -4497945021219515702
+    second: pixel triangle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enektar_0
+      name: pixel triangle_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 8
-        width: 8
-        height: 14
+        x: 49
+        y: 29
+        width: 372
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdca71d402920a520800000000000000
-      internalID: 2711212194386128092
+      spriteID: ac259f695d61491c0800000000000000
+      internalID: -4497945021219515702
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7c5672cb23ce8f34b89ff793fdf30b16
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -146,11 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      enektar_0: 2711212194386128092
+      pixel triangle_0: -4497945021219515702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

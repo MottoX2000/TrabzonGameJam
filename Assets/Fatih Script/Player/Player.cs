@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     [Header("Temel istatistikler")]
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float cooldown = 1f;
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        Instance = this;
     }
 
     void Update()

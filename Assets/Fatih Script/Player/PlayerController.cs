@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Player _player;
     [SerializeField] private float interactionRange = 2f;
+    [SerializeField] float infoRange = 6f;
 
     void Awake()
     {
@@ -27,10 +28,7 @@ public class PlayerController : MonoBehaviour
 
         _player.SetMovementInput(new Vector2(x, y));
 
-        /*if (Keyboard.current.zKey.wasPressedThisFrame)
-        {
-            _player.TakeDamage(10);
-        }*/
+        CheckInteraction(true); // Detect nearby interactables for UI feedback
 
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
@@ -43,25 +41,61 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void CheckInteraction()
+    private void CheckInteraction(bool detectOnly = false)
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, interactionRange);
+        Collider2D[] hitColliders = detectOnly ? Physics2D.OverlapCircleAll(transform.position, infoRange) 
+            : Physics2D.OverlapCircleAll(transform.position, interactionRange);
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Item"))
+            var item = hitCollider.GetComponent<Item>();
+            if (item != null)
             {
-                // Buy Pistol system can be implemented here, for now we just log the interaction
+                if (detectOnly)
+                {
+                    item.InfoActivate(true);
+                }
+                else
+                {
 
-                Debug.Log(hitCollider.gameObject.name + " itemýyla etkileþime geçildi!");
-                break;
+                    // Buy Pistol system can be implemented here, for now we just log the interaction
+                    CollectItem(item);
+                    Debug.Log(hitCollider.gameObject.name + " itemýyla etkileþime geçildi!");
+                    break;
+                }
             }
         }
+    }
+
+    public void CollectItem(Item item)
+    {
+        switch (item.item)
+        {
+            case "Key":
+                GameManager.Instance.OpenRedDoor();
+                break;
+            case "Knife":
+                WeaponSystem.Instance.GrantWeapon(WeaponType.Knife);
+                break;
+            case "Pistol":
+                WeaponSystem.Instance.GrantWeapon(WeaponType.Pistol);
+                break;
+            case "Exit Door":
+                GameManager.Instance.Win();
+                return;
+            default:
+                break;
+        }
+
+        Destroy(item.gameObject);
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, infoRange);
     }
 }

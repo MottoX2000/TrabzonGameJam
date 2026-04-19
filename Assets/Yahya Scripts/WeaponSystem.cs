@@ -10,6 +10,8 @@ public enum WeaponType
 
 public class WeaponSystem : MonoBehaviour
 {
+    public static WeaponSystem Instance;
+
     [Header("Weapon Ownership")]
     public bool hasKnife = false;
     public bool hasPistol = false;
@@ -37,6 +39,11 @@ public class WeaponSystem : MonoBehaviour
 
     private float nextAttackTime = 0f;
     public bool IsAttacking => Time.time < nextAttackTime;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -123,7 +130,7 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
-    private void EquipWeapon(WeaponType weapon)
+    public void EquipWeapon(WeaponType weapon)
     {
         currentWeapon = weapon;
         UIManager.Instance.UpdateCurrentWeapon(currentWeapon);

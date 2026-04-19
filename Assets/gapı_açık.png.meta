@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 68af90a547c8a8b40995a83fc8566e8c
+guid: bab13ad3110eb5a429ff49de9bc5828b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2711212194386128092
-    second: enektar_0
+      213: -4218563940525451827
+    second: "gap\u0131_a\xE7\u0131k_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enektar_0
+      name: "gap\u0131_a\xE7\u0131k_0"
       rect:
         serializedVersion: 2
-        x: 12
-        y: 8
-        width: 8
-        height: 14
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdca71d402920a520800000000000000
-      internalID: 2711212194386128092
+      spriteID: dc555be6276a475c0800000000000000
+      internalID: -4218563940525451827
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7c5672cb23ce8f34b89ff793fdf30b16
+    spriteID: becbf89581dd844449a220369e6438e3
     internalID: 0
     vertices: []
     indices: 
@@ -146,11 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      enektar_0: 2711212194386128092
+      "gap\u0131_a\xE7\u0131k_0": -4218563940525451827
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7298399147094878589}
   - component: {fileID: 4395933438068285174}
   - component: {fileID: 8452184891994910709}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -64,14 +64,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567064193765569308}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

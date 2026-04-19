@@ -13,6 +13,7 @@ public class Boss : BaseEnemy
     [SerializeField] private float detectionRange = 10f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float chargeAcceleration = 10f;
 
     [Header("References")]
     [SerializeField] private Animator animator;
@@ -20,10 +21,11 @@ public class Boss : BaseEnemy
     [SerializeField] private GameObject stunEffect;
 
     bool died = false;
-    private Rigidbody2D _rb;
     private bool _isAttacking = false;
     private bool _isStunned = false;
     private float _nextAttackTime = 0f;
+    private Vector2 _attackDirection;
+    private float _attackStartTime;
 
     protected override int Health
     {
@@ -53,6 +55,7 @@ public class Boss : BaseEnemy
         currentHealth = _health;
         currentMovementSpeed = _movementSpeed;
         _rb = GetComponent<Rigidbody2D>();
+        _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // Helps prevent passing through walls at high speeds
     }
 
     private void Update()
@@ -126,6 +129,19 @@ public class Boss : BaseEnemy
         });
     }
 
+    private void FixedUpdate()
+    {
+        if (_isAttacking && !_isStunned && !died)
+        {
+            float t = Time.time - _attackStartTime;
+            // Parabolic speed increase: v = v0 + a * t^2
+            float currentChargeSpeed = currentMovementSpeed + (chargeAcceleration * t * t);
+            
+            // MovePosition recalculates physics constraints to prevent going through colliders
+            _rb.MovePosition(_rb.position + _attackDirection * currentChargeSpeed * Time.fixedDeltaTime);
+        }
+    }
+
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
@@ -145,10 +161,18 @@ public class Boss : BaseEnemy
         Debug.Log($"{name} ulti saldýrýsý yapýyor!");
         _isAttacking = true;
 
-        Vector2 direction = (_playerTransform.position - transform.position).normalized;
-        _rb.linearVelocity = direction * currentMovementSpeed * 2f; // Increased speed for linear attack
+        _attackDirection = (_playerTransform.position - transform.position).normalized;
+        _attackStartTime = Time.time;
 
-        if (direction.x > 0) transform.localScale = new Vector3(1, 1, 1);
-        else if (direction.x < 0) transform.localScale = new Vector3(-1, 1, 1);
+        if (_attackDirection.x > 0) transform.localScale = new Vector3(1, 1, 1);
+        else if (_attackDirection.x < 0) transform.localScale = new Vector3(-1, 1, 1);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

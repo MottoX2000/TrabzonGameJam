@@ -128,7 +128,7 @@ public class Zombie : BaseEnemy
         Helper.DoAfterDelay(0.3f, () =>
         {
             float distanceToPlayer = Vector2.Distance(transform.position, _playerTransform.position);
-            if (_playerTransform.TryGetComponent<Player>(out Player playerScript) && distanceToPlayer <= attackRange)
+            if (_playerTransform.TryGetComponent<Player>(out Player playerScript) && distanceToPlayer <= attackRange * 1.5f)
             {
                 playerScript.TakeDamage((int)_damage);
             }

@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   interactionRange: 1.5
+  infoRange: 6
 --- !u!114 &3220931022144115064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,18 +332,18 @@ MonoBehaviour:
   currentWeapon: 0
   knifeRange: 1.2
   knifeFireRate: 0.2
-  knifeDamage: 10
+  knifeDamage: 11
   knifeEffect: {fileID: 0}
   knifeAnimator: {fileID: 1252156014271006104}
   knifePoint: {fileID: 3216376599259761581}
   pistolRange: 15
   pistolFireRate: 0
   pistolDamage: 20
-  pistolBulletCost: 2
+  pistolBulletCost: 5
   pistolEffectPrefab: {fileID: 5147329544384084829, guid: 785cd1f739fdf9246ba5cd3b77c9a93b, type: 3}
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   firePoint: {fileID: 5294318626879594250}
   pistolTrans: {fileID: 7220594853728974833}
 --- !u!61 &8089538354759592807
