@@ -3,7 +3,7 @@ using UnityEngine;
 public class ZombieSoundController : MonoBehaviour // FATÝH
 {
     [Header("Ses Ýsimleri (SoundManager'daki isimler)")]
-    [SerializeField] private string[] idleSounds = { "ZombieIdle1", "ZombieIdle2", "ZombieIdle3" };
+    //[SerializeField] private string[] idleSounds = { "ZombieIdle1", "ZombieIdle2", "ZombieIdle3" };
     [SerializeField] private string[] hurtSounds = { "ZombieHurt1", "ZombieHurt2", "ZombieHurt3" };
     [SerializeField] private string[] walkSounds = { "ZombieWalk1", "ZombieWalk2", "ZombieWalk3" };
 
@@ -12,7 +12,7 @@ public class ZombieSoundController : MonoBehaviour // FATÝH
     [SerializeField] private float maxIdleDelay = 7f;
     [SerializeField] private float walkSoundDelay = 0.6f;
 
-    private float _nextIdleTime;
+    //private float _nextIdleTime;
     private float _walkTimer;
     private string _assignedWalkSound;
 
@@ -21,7 +21,7 @@ public class ZombieSoundController : MonoBehaviour // FATÝH
     void Start()
     {
         _zombie = GetComponent<Zombie>();
-        SetNextIdleTime();
+        //SetNextIdleTime();
 
         if (walkSounds != null && walkSounds.Length > 0)
         {
@@ -29,7 +29,7 @@ public class ZombieSoundController : MonoBehaviour // FATÝH
         }
     }
 
-    void Update()
+    /*void Update()
     {
         if (_zombie.IsDead) return;
 
@@ -38,7 +38,7 @@ public class ZombieSoundController : MonoBehaviour // FATÝH
             PlayRandomSound(idleSounds);
             SetNextIdleTime();
         }
-    }
+    }*/
 
     public void PlayWalkSound()
     {
@@ -86,8 +86,8 @@ public class ZombieSoundController : MonoBehaviour // FATÝH
         }
     }
 
-    private void SetNextIdleTime()
+    /*private void SetNextIdleTime()
     {
         _nextIdleTime = Time.time + Random.Range(minIdleDelay, maxIdleDelay);
-    }
+    }*/
 }
