@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    protected abstract string EntityName { get; }
     protected abstract int Health { get; set; }
     protected abstract float MovementSpeed { get; set; }
 
@@ -19,7 +18,7 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
-        Debug.Log($"{EntityName} öldü.");
+        Debug.Log($"{name} öldü.");
         Destroy(gameObject);
     }
 }

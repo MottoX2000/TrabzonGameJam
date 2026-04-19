@@ -20,7 +20,6 @@ public class Zombie : BaseEnemy
 
     bool died = false;
 
-    protected override string EntityName => _entityName;
     protected override int Health { get => currentHealth; set => currentHealth = value; }
     protected override float MovementSpeed { get => currentMovementSpeed; set => currentMovementSpeed = value; }
     protected override int RewardTime { get => _rewardTime; set => _rewardTime = value; }
@@ -98,7 +97,7 @@ public class Zombie : BaseEnemy
     {
         base.TakeDamage(damage);
         animator.SetTrigger("getDamage");
-        Debug.Log($"{EntityName} {damage} hasar aldý! Kalan can: {Health}");
+        Debug.Log($"{_entityName} {damage} hasar aldý! Kalan can: {Health}");
     }
 
     protected override void Die()
@@ -111,8 +110,7 @@ public class Zombie : BaseEnemy
 
     public override void Attack()
     {
-        Debug.Log($"{EntityName} oyuncuya pençe atýyor!");
-
+        Debug.Log($"{_entityName} oyuncuya pence atiyor!");
 
         animator.SetTrigger("attack");
         Helper.DoAfterDelay(0.3f, () =>
