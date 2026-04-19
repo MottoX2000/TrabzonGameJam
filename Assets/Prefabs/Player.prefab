@@ -310,6 +310,7 @@ MonoBehaviour:
   _dashDuration: 0.15
   _dashCooldown: 1
   _dashTimeCost: 1
+  footstepDelay: 0.4
   animator: {fileID: 5819959255684907995}
   gfx: {fileID: 2676198035348243534}
   _weaponSystem: {fileID: 4474252507829872117}

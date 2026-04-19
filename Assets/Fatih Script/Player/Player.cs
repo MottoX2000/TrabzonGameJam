@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     private float _dashTimeCounter;
     private float _dashCooldownCounter;
 
+    [SerializeField] private float footstepDelay = 0.4f; // FATÝH
+    private float footstepTimer;
+
     [Header("Componenets")]
     [SerializeField] private Animator animator;
     private Rigidbody2D _rb;
@@ -53,11 +56,17 @@ public class Player : MonoBehaviour
 
     void TrackDashSystem()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && _dashCooldownCounter <= 0)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && _dashCooldownCounter <= 0 && _moveInput.magnitude > 0) // FATÝH
         {
             TimeManager.Instance?.RemoveTime(_dashTimeCost); // Dash time cost
             _dashTimeCounter = _dashDuration;
             _dashCooldownCounter = _dashCooldown;
+
+            if (SoundManager.Instance != null) // FATÝH
+            {
+                SoundManager.Instance.PlaySFX("PlayerDash");
+                footstepTimer = _dashDuration;
+            }
         }
 
         if (_dashTimeCounter > 0)
@@ -93,9 +102,35 @@ public class Player : MonoBehaviour
         if (_moveInput.x != 0 && !_weaponSystem.IsAttacking) gfx.localScale = new Vector3(_moveInput.x >= 0 ? 1 : -1, 1, 1);
         animator.SetBool("running", _moveInput.magnitude > 0);
 
-        /*if (SoundManager.Instance != null)
-            SoundManager.Instance.PlaySFX("PlayerDeath");*/
+        HandleFootstepSounds(); // FATÝH
     }
+
+    private void HandleFootstepSounds() // FATÝH
+    {
+        if (_dashTimeCounter > 0) return;
+
+        if (_moveInput.magnitude > 0)
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0)
+            {
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlaySFX("PlayerWalk");
+                }
+
+                float currentDelay = (_dashTimeCounter > 0) ? footstepDelay / 1.5f : footstepDelay;
+                footstepTimer = currentDelay;
+            }
+        }
+        else
+        {
+            footstepTimer = 0;
+        }
+    }
+
+
 
     public void Attack()
     {
@@ -110,8 +145,8 @@ public class Player : MonoBehaviour
         Debug.Log($"{name} {damage} hasar aldý! Kalan can: {(int)TimeManager.Instance.currentTime}");
         cooldownCounter = cooldown;
 
-        /*if (SoundManager.Instance != null && )
-            SoundManager.Instance.PlaySFX("PlayerHurt");*/
+        if (SoundManager.Instance != null) // FATÝH
+            SoundManager.Instance.PlaySFX("PlayerHurt");
     }
 
     protected void Die()

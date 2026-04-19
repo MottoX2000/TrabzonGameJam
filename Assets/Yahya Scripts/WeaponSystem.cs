@@ -154,6 +154,8 @@ public class WeaponSystem : MonoBehaviour
     private void KnifeAttack()
     {
         if (knifeEffect != null) knifeEffect.Play();
+        if (SoundManager.Instance != null) // FATÝH
+            SoundManager.Instance.PlaySFX("KnifeSound");
 
         // 2D Near-range directional attack from the knifePoint
         Vector2 attackPos = knifePoint != null ? knifePoint.position : transform.position;
@@ -184,6 +186,9 @@ public class WeaponSystem : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(mousePosScreen);
         mousePos.z = 0f;
         Vector2 attackDir = ((Vector2)mousePos - attackPos).normalized;
+
+        if (SoundManager.Instance != null) // FATÝH
+            SoundManager.Instance.PlaySFX("PistolSound");
 
         // Visual
         if (pistolEffectPrefab != null)

@@ -515,8 +515,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
   target: {fileID: 364031371}
-  smoothSpeed: 5
   offset: {x: 0, y: 0, z: -10}
+  useStartOffset: 1
+  lookAtTarget: 1
+  followSpeed: 2
+  rotationSpeed: 2
+  enableMouseFollow: 1
+  mouseInfluence: 0.3
+  maxMouseDistance: 5
+  mouseFollowSpeed: 3
+  enableDynamicSize: 1
+  baseSize: 5
+  minSize: 3
+  maxSize: 10
+  sizeChangeSpeed: 2
+  useBoundaries: 0
+  minBounds: {x: -50, y: -50}
+  maxBounds: {x: 50, y: 50}
+  stopDistance: 0.1
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1491,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4474252507829872117, guid: 8f6db0ed40abedf448af91ea9c3802eb, type: 3}
+      propertyPath: currentWeapon
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5640589067328764113, guid: 8f6db0ed40abedf448af91ea9c3802eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.079

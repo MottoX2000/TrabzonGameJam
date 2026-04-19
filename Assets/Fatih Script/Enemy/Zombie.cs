@@ -18,16 +18,20 @@ public class Zombie : BaseEnemy
     private Transform _playerTransform;
     private float _nextAttackTime;
 
+    private ZombieSoundController _soundController; // FATÝH
+
     bool died = false;
 
     protected override int Health { get => currentHealth; set => currentHealth = value; }
     protected override float MovementSpeed { get => currentMovementSpeed; set => currentMovementSpeed = value; }
     protected override int RewardTime { get => _rewardTime; set => _rewardTime = value; }
     protected override float AttackDamage { get => _damage; set => _damage = value; }
+    public bool IsDead => died;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _soundController = GetComponent<ZombieSoundController>(); // FATÝH
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null) _playerTransform = playerObj.transform;
     }
@@ -76,6 +80,7 @@ public class Zombie : BaseEnemy
         {
             animator.SetBool("walking", true);
             FollowPlayer();
+            _soundController?.PlayWalkSound(); // FATÝH
         }
         else
         {
@@ -95,17 +100,23 @@ public class Zombie : BaseEnemy
 
     public override void TakeDamage(int damage)
     {
+        if (died) return;
+
         base.TakeDamage(damage);
         animator.SetTrigger("getDamage");
+        _soundController?.PlayHurtSound(); // FATÝH
         Debug.Log($"{_entityName} {damage} hasar aldý! Kalan can: {Health}");
     }
 
     protected override void Die()
     {
+        if (died) return;
+
         died = true;
         animator.SetTrigger("death");
+        _soundController?.PlayDeathSound(); // FATÝH
         TimeManager.Instance.AddTime(_rewardTime);
-        Destroy(gameObject, 3f); // Ölüm animasyonunun oynayabilmesi için biraz gecikme
+        Destroy(gameObject, 3f);
     }
 
     public override void Attack()
@@ -113,6 +124,7 @@ public class Zombie : BaseEnemy
         Debug.Log($"{_entityName} oyuncuya pence atiyor!");
 
         animator.SetTrigger("attack");
+        _soundController?.PlayAttackSound(); // FATÝH
         Helper.DoAfterDelay(0.3f, () =>
         {
             float distanceToPlayer = Vector2.Distance(transform.position, _playerTransform.position);

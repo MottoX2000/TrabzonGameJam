@@ -285,6 +285,62 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: eed9961b3e3607845a4a84619112143b, type: 3}
     volume: 1
     loop: 0
+  - name: PlayerWalk
+    clip: {fileID: 8300000, guid: 8f0a9107cec514b4b96a1ddcf8454004, type: 3}
+    volume: 1
+    loop: 0
+  - name: PlayerDash
+    clip: {fileID: 8300000, guid: b229f26248401574eb2ffb79b3b14ca3, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieDeath
+    clip: {fileID: 8300000, guid: 9c282aec21fd4ed4888cb6c446e4d84b, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieIdle1
+    clip: {fileID: 8300000, guid: 8d504f5a876ce6549948eb1f7f64a23d, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieIdle2
+    clip: {fileID: 8300000, guid: c695ad1515947ff4b9f56aa4b2446a54, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieIdle3
+    clip: {fileID: 8300000, guid: 4c6e68aba87c84f4894f92d23c93d874, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieHurt1
+    clip: {fileID: 8300000, guid: a8ee058810a806c439d049a8b4dd7543, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieHurt2
+    clip: {fileID: 8300000, guid: 937ecbd73ab410e4eab27c418fd1a4e6, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieHurt3
+    clip: {fileID: 8300000, guid: fa2f26273085b6e489d3b0e1193b7821, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieWalk1
+    clip: {fileID: 8300000, guid: f97395ab47462cf42bf198610bfbb7d3, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieWalk2
+    clip: {fileID: 8300000, guid: 49a928fd064fc8948919954e10ec952f, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieWalk3
+    clip: {fileID: 8300000, guid: e8030d5de863a3e4d98788974606125e, type: 3}
+    volume: 1
+    loop: 0
+  - name: KnifeSound
+    clip: {fileID: 8300000, guid: 9505f5ed63718b7488ed673bebf7c0b5, type: 3}
+    volume: 1
+    loop: 0
+  - name: PistolSound
+    clip: {fileID: 8300000, guid: 778d254106daa5542ba5cca8ddaf2f9f, type: 3}
+    volume: 1
+    loop: 0
 --- !u!1 &373145744
 GameObject:
   m_ObjectHideFlags: 0
