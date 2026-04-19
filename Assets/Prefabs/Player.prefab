@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   interactionRange: 1.5
-  infoRange: 6
+  infoRange: 3
 --- !u!114 &3220931022144115064
 MonoBehaviour:
   m_ObjectHideFlags: 0

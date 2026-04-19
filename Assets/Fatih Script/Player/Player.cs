@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     private Vector2 _moveInput;
     private float cooldownCounter;
+    private bool isDead = false;
 
     void Awake()
     {
@@ -54,11 +55,13 @@ public class Player : MonoBehaviour
 
     public void SetMovementInput(Vector2 input)
     {
-        _moveInput = input;
+        _moveInput = isDead ? Vector2.zero : input;
     }
 
     void TrackDashSystem()
     {
+        if(isDead) return;
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame && _dashCooldownCounter <= 0 && _moveInput.magnitude > 0) // FATÝH
         {
             TimeManager.Instance?.RemoveTime(_dashTimeCost); // Dash time cost
@@ -154,8 +157,13 @@ public class Player : MonoBehaviour
 
     protected void Die()
     {
+        if (isDead) return;
         if (SoundManager.Instance != null)
             SoundManager.Instance.PlaySFX("PlayerDeath");
+
+        isDead = true;
+        _weaponSystem.EquipWeapon(WeaponType.None);
+        animator.SetTrigger("death");
         GameManager.Instance?.GameOver();
     }
 

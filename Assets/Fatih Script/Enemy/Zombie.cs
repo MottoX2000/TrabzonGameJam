@@ -116,6 +116,7 @@ public class Zombie : BaseEnemy
         animator.SetTrigger("death");
         _soundController?.PlayDeathSound(); // FATÝH
         TimeManager.Instance.AddTime(_rewardTime);
+        GetComponent<Collider2D>().isTrigger = true;
         Destroy(gameObject, 3f);
     }
 

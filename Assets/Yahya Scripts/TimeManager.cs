@@ -29,22 +29,22 @@ public class TimeManager : MonoBehaviour
     #region Private Methods
     void UpdateTimer()
     {
-        currentTime -= Time.deltaTime;     
+        currentTime -= Time.deltaTime;
         UIManager.Instance.UpdateTimer(currentTime);
 
         if (currentTime >= 60)
         {
             SoundManager.Instance.PlayMusic("ThemeSound1");
         }
-        else if (currentTime < 60 && currentTime > 30)
+        else if (currentTime > 30)
         {
             SoundManager.Instance.PlayMusic("ThemeSound2");
-        } 
+        }
         else if (currentTime <= 10)
         {
             SoundManager.Instance.PlayMusic("ThemeSound3");
             GameManager.Instance.StartCriticalWarning();
-        }
+        }        
     }
     #endregion
 
@@ -53,11 +53,19 @@ public class TimeManager : MonoBehaviour
     {
         // Add effect
         currentTime += timeToAdd;
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowTimeAddedEffect(timeToAdd);
+        }
     }
     public void RemoveTime(float timeToRemove) 
     {
         // Remove effect
         currentTime -= timeToRemove;
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowTimeRemovedEffect(timeToRemove);
+        }
     }
     public void SetTimer(float newTime)
     {

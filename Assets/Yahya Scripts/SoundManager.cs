@@ -47,6 +47,14 @@ public class SoundManager : MonoBehaviour
         musicSource.Play();
     }
 
+    public void StopMusic()
+    {
+        if (musicSource != null)
+        {
+            musicSource.enabled = false;
+        }
+    }
+
     public void PlaySFX(string name)
     {
         SoundClip s = Array.Find(sfxClips, x => x.name == name);
