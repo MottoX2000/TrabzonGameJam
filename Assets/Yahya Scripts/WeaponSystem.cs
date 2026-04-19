@@ -16,13 +16,14 @@ public class WeaponSystem : MonoBehaviour
 
     [Header("Current State")]
     public WeaponType currentWeapon = WeaponType.None;
-    [SerializeField] private Transform firePoint;
 
     [Header("Knife Settings")]
     [SerializeField] private float knifeRange = 1.5f;
     [SerializeField] private float knifeFireRate = 0.5f;
     [SerializeField] private int knifeDamage = 10;
     [SerializeField] private ParticleSystem knifeEffect;
+    [SerializeField] Animator knifeAnimator;
+    [SerializeField] Transform knifePoint;
 
     [Header("Pistol Settings")]
     [SerializeField] private float pistolRange = 15f;
@@ -31,17 +32,21 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] private int pistolBulletCost = 3;
     [SerializeField] private ParticleSystem pistolEffectPrefab;
     [SerializeField] LayerMask enemyLayerMask;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] Transform pistolTrans;
 
     private float nextAttackTime = 0f;
+    public bool IsAttacking => Time.time < nextAttackTime;
 
     private void Start()
     {
-        UIManager.Instance.UpdateCurrentWeapon(currentWeapon);
+        EquipWeapon(currentWeapon);
     }
 
     private void Update()
     {
         HandleWeaponSwitching();
+        WeaponDirection();
     }
 
     /// <summary>
@@ -57,6 +62,30 @@ public class WeaponSystem : MonoBehaviour
         {
             EquipWeapon(weapon);
         }
+    }
+
+    void WeaponDirection()
+    {
+        Vector2 mousePosScreen = Mouse.current.position.ReadValue();
+        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosScreen);
+        mousePosWorld.z = 0f;
+
+        Vector2 direction = (mousePosWorld - pistolTrans.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        pistolTrans.rotation = Quaternion.Euler(0, 0, angle);
+
+        // Flip the weapon vertically when aiming left so it doesn't appear upside down
+        Vector3 localScale = pistolTrans.localScale;
+        if (angle > 90 || angle < -90)
+        {
+            localScale.y = -Mathf.Abs(localScale.y);
+        }
+        else
+        {
+            localScale.y = Mathf.Abs(localScale.y);
+        }
+        pistolTrans.localScale = localScale;
     }
 
     private void HandleWeaponSwitching()
@@ -78,15 +107,29 @@ public class WeaponSystem : MonoBehaviour
                 else if (hasPistol)
                     EquipWeapon(WeaponType.Pistol);
             }
+        }
 
-            UIManager.Instance.UpdateCurrentWeapon(currentWeapon);
+        // Optional: Add number key switching (1 for Knife, 2 for Pistol)
+        if (Keyboard.current != null)
+        {
+            if (Keyboard.current.digit1Key.wasPressedThisFrame && hasKnife)
+            {
+                EquipWeapon(WeaponType.Knife);
+            }
+            else if (Keyboard.current.digit2Key.wasPressedThisFrame && hasPistol)
+            {
+                EquipWeapon(WeaponType.Pistol);
+            }
         }
     }
 
     private void EquipWeapon(WeaponType weapon)
     {
         currentWeapon = weapon;
-        // Logic to swap weapon graphics can go here
+        UIManager.Instance.UpdateCurrentWeapon(currentWeapon);
+
+        pistolTrans.gameObject.SetActive(weapon == WeaponType.Pistol); 
+        knifeAnimator.gameObject.SetActive(weapon == WeaponType.Knife); 
     }
 
     public void Attack()
@@ -112,16 +155,22 @@ public class WeaponSystem : MonoBehaviour
     {
         if (knifeEffect != null) knifeEffect.Play();
 
-        // 2D Near-range directional attack from the firePoint
-        Vector2 attackPos = firePoint != null ? firePoint.position : transform.position;
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos, knifeRange);
+        // 2D Near-range directional attack from the knifePoint
+        Vector2 attackPos = knifePoint != null ? knifePoint.position : transform.position;
+        knifeAnimator.SetTrigger("attack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos, knifeRange, enemyLayerMask);
         foreach (Collider2D enemy in hitEnemies)
         {
+            print($"Hit {enemy.name} with knife attack.");
             if (enemy.CompareTag("Enemy"))
             {
                 // Apply damage to enemy
-                enemy.GetComponent<Entity>()?.TakeDamage(knifeDamage);
-                Debug.Log("Slashed Enemy!");
+                Helper.DoAfterDelay(knifeAnimator.GetCurrentAnimatorStateInfo(0).length / 3, () =>
+                {
+                    enemy.GetComponent<Entity>()?.TakeDamage(knifeDamage);
+                    Debug.Log("Slashed Enemy!");
+                });
             }
         }
     }
@@ -168,7 +217,7 @@ public class WeaponSystem : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         // Visualize the attack ranges in the editor
-        Vector3 attackPos = firePoint != null ? firePoint.position : transform.position;
+        Vector3 attackPos = knifePoint != null ? knifePoint.position : transform.position;
         Vector3 attackDir = firePoint != null ? firePoint.right : transform.right;
 
         // Knife

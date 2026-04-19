@@ -3,19 +3,22 @@ using UnityEngine;
 public class Zombie : BaseEnemy
 {
     [Header("Temel Ýstatistikler")]
+    [SerializeField] Animator animator;
     [SerializeField] private string _entityName;
     [SerializeField] private int _health;
     [SerializeField] private float _movementSpeed;
     [SerializeField] private int _rewardTime;
-    [SerializeField] private float _damage;
+    [SerializeField] private float _damage = 5;
 
     [Header("AI Ayarlarý")]
     [SerializeField] private float detectionRange = 5f;
-    [SerializeField] private float attackRange = 1.2f;
+    [SerializeField] private float attackRange = 0.8f;
     [SerializeField] private float attackCooldown = 1f;
 
     private Transform _playerTransform;
     private float _nextAttackTime;
+
+    bool died = false;
 
     protected override string EntityName => _entityName;
     protected override int Health { get => currentHealth; set => currentHealth = value; }
@@ -38,6 +41,12 @@ public class Zombie : BaseEnemy
 
     private void Update()
     {
+        if (died)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (currentHealth <= 0)
         {
             Die();
@@ -56,6 +65,7 @@ public class Zombie : BaseEnemy
 
         if (distanceToPlayer <= attackRange)
         {
+            animator.SetBool("walking", false);
             if (Time.time >= _nextAttackTime)
             {
                 Attack();
@@ -65,10 +75,12 @@ public class Zombie : BaseEnemy
         }
         else if (distanceToPlayer <= detectionRange)
         {
+            animator.SetBool("walking", true);
             FollowPlayer();
         }
         else
         {
+            animator.SetBool("walking", false);
             _rb.linearVelocity = Vector2.zero;
         }
     }
@@ -85,23 +97,32 @@ public class Zombie : BaseEnemy
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        animator.SetTrigger("getDamage");
         Debug.Log($"{EntityName} {damage} hasar aldý! Kalan can: {Health}");
     }
 
     protected override void Die()
     {
+        died = true;
+        animator.SetTrigger("death");
         TimeManager.Instance.AddTime(_rewardTime);
-        base.Die();
+        Destroy(gameObject, 3f); // Ölüm animasyonunun oynayabilmesi için biraz gecikme
     }
 
     public override void Attack()
     {
         Debug.Log($"{EntityName} oyuncuya pençe atýyor!");
 
-        if (_playerTransform.TryGetComponent<Player>(out Player playerScript))
+
+        animator.SetTrigger("attack");
+        Helper.DoAfterDelay(0.3f, () =>
         {
-            playerScript.TakeDamage((int)_damage);
-        }
+            float distanceToPlayer = Vector2.Distance(transform.position, _playerTransform.position);
+            if (_playerTransform.TryGetComponent<Player>(out Player playerScript) && distanceToPlayer <= attackRange)
+            {
+                playerScript.TakeDamage((int)_damage);
+            }
+        });
     }
 
     private void OnDrawGizmosSelected()

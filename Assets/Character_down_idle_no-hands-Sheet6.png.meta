@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4f28b0b8df19fbd45b569248235350d3
+guid: 367c9ff2e67310c4399a939a76e52e0b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8690489390062296544
-    second: Character_side_idle-Sheet6_0
+      213: 1030219907804930814
+    second: Character_down_idle_no-hands-Sheet6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,51 +96,16 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_side_idle-Sheet6_0
+      name: Character_down_idle_no-hands-Sheet6_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0222905a1fd256780800000000000000
-      internalID: -8690489390062296544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_side_idle-Sheet6_1
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 0
-        width: 12
+        width: 11
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -150,19 +115,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 087ba0ddc651c4d4aa6f0fe1567981c9
-      internalID: -198351045
+      spriteID: 425e85f7b2593214f8ea688fb374c9f6
+      internalID: 1030219907804930814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_side_idle-Sheet6_2
+      name: Character_down_idle_no-hands-Sheet6_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 11
         y: 0
-        width: 12
+        width: 11
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -172,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23fdf04e235a19641927f390cd4e0104
-      internalID: 244946793
+      spriteID: fb75b98f71578e24aad96271a6b6a6cb
+      internalID: -1871302644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_side_idle-Sheet6_3
+      name: Character_down_idle_no-hands-Sheet6_2
       rect:
         serializedVersion: 2
-        x: 36
+        x: 22
         y: 0
-        width: 12
+        width: 11
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -194,19 +159,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6b67228d778d904aa155d46740c578c
-      internalID: 98973894
+      spriteID: ee40395b680185d49bba8691c334702f
+      internalID: -1963414679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_side_idle-Sheet6_4
+      name: Character_down_idle_no-hands-Sheet6_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 33
         y: 0
-        width: 12
+        width: 11
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -216,19 +181,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 600bc0dbdb0882f4c8ccccf9320a18b5
-      internalID: -1361311172
+      spriteID: 980337abad7cde744838fd633e047d51
+      internalID: -1849862184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_side_idle-Sheet6_5
+      name: Character_down_idle_no-hands-Sheet6_4
       rect:
         serializedVersion: 2
-        x: 60
+        x: 44
         y: 0
-        width: 12
+        width: 11
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -238,8 +203,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ec3277a1e3467c4b9e4dc97974760f3
-      internalID: -624872632
+      spriteID: 77867d8ebce8bee43b0ebf2c04250ed1
+      internalID: -551923817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_down_idle_no-hands-Sheet6_5
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 0
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c4ac083f429d045b3026a6819bfef1
+      internalID: -249312996
       vertices: []
       indices: 
       edges: []
@@ -248,7 +235,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 50d45e40314056f41b6f3f4103a0c0da
+    spriteID: 27902d08af59179458c68017a290c615
     internalID: 0
     vertices: []
     indices: 
@@ -258,14 +245,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":12.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":11.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Character_side_idle-Sheet6_0: -8690489390062296544
-      Character_side_idle-Sheet6_1: -198351045
-      Character_side_idle-Sheet6_2: 244946793
-      Character_side_idle-Sheet6_3: 98973894
-      Character_side_idle-Sheet6_4: -1361311172
-      Character_side_idle-Sheet6_5: -624872632
+      Character_down_idle_no-hands-Sheet6_0: 1030219907804930814
+      Character_down_idle_no-hands-Sheet6_1: -1871302644
+      Character_down_idle_no-hands-Sheet6_2: -1963414679
+      Character_down_idle_no-hands-Sheet6_3: -1849862184
+      Character_down_idle_no-hands-Sheet6_4: -551923817
+      Character_down_idle_no-hands-Sheet6_5: -249312996
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
