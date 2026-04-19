@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour
         if (SoundManager.Instance != null && SoundManager.Instance.sfxClips.Length > 0)
         {
             SoundManager.Instance.PlaySFX("ButtonClick");
-            SoundManager.Instance.PlayMusic("MenuTheme");
+            /*SoundManager.Instance.PlayMusic("MenuTheme");*/
         }
     }
 }
