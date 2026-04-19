@@ -32,9 +32,17 @@ public class TimeManager : MonoBehaviour
         currentTime -= Time.deltaTime;     
         UIManager.Instance.UpdateTimer(currentTime);
 
-        //Dangerous condition
-        if (currentTime <= 10)
+        if (currentTime >= 60)
         {
+            SoundManager.Instance.PlayMusic("ThemeSound1");
+        }
+        else if (currentTime < 60 && currentTime > 30)
+        {
+            SoundManager.Instance.PlayMusic("ThemeSound2");
+        } 
+        else if (currentTime <= 10)
+        {
+            SoundManager.Instance.PlayMusic("ThemeSound3");
             GameManager.Instance.StartCriticalWarning();
         }
     }

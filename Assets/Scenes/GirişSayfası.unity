@@ -268,8 +268,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e82992021c6a44f4dadda83293b59692, type: 3}
     volume: 1
     loop: 1
-  - name: MenuTheme
+  - name: GameOver
     clip: {fileID: 8300000, guid: 10b0fca36709b6845a35613114426ae3, type: 3}
+    volume: 1
+    loop: 1
+  - name: ThemeSound1
+    clip: {fileID: 8300000, guid: 7553a5d45c90c464bb2fc62a2e635f0c, type: 3}
+    volume: 1
+    loop: 1
+  - name: ThemeSound2
+    clip: {fileID: 8300000, guid: ec8538f480b563c4caf7a4ebe0cb9523, type: 3}
+    volume: 1
+    loop: 1
+  - name: ThemeSound3
+    clip: {fileID: 8300000, guid: fc2135e0fb568ac4e97b0024dff9ed6b, type: 3}
     volume: 1
     loop: 1
   sfxClips:
