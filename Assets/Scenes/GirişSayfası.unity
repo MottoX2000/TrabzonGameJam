@@ -290,7 +290,7 @@ MonoBehaviour:
     volume: 1
     loop: 0
   - name: PlayerDash
-    clip: {fileID: 8300000, guid: b229f26248401574eb2ffb79b3b14ca3, type: 3}
+    clip: {fileID: 8300000, guid: 9e87fcf431828164182ccf8887b4cc6d, type: 3}
     volume: 1
     loop: 0
   - name: ZombieDeath
@@ -331,6 +331,10 @@ MonoBehaviour:
     loop: 0
   - name: ZombieWalk3
     clip: {fileID: 8300000, guid: e8030d5de863a3e4d98788974606125e, type: 3}
+    volume: 1
+    loop: 0
+  - name: ZombieAttack
+    clip: {fileID: 8300000, guid: 6ed5b05bd96fe7a4d931a044b33c46cc, type: 3}
     volume: 1
     loop: 0
   - name: KnifeSound

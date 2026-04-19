@@ -68,6 +68,8 @@ public class ZombieSoundController : MonoBehaviour // FATÝH
 
     public void PlayAttackSound()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlaySFX("ZombieAttack");
     }
 
     private void PlayRandomSound(string[] soundList)
