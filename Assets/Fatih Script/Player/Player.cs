@@ -166,9 +166,4 @@ public class Player : MonoBehaviour
         animator.SetTrigger("death");
         GameManager.Instance?.GameOver();
     }
-
-    private void OnDestroy()
-    {
-        Die();
-    }
 }

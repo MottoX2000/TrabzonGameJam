@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -28,6 +29,21 @@ public class UIManager : MonoBehaviour
         {
             originalTimerColor = timerTXT.color;
             originalTimerScale = timerTXT.transform.localScale;
+        }
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (PausePanel.activeSelf)
+            {
+                ResumeBTN();
+            }
+            else
+            {
+                PauseBTN();
+            }
         }
     }
 
@@ -173,11 +189,25 @@ public class UIManager : MonoBehaviour
     #region Buttons
     public void RestartBTN()
     {
+        Time.timeScale = 1f; // Ensure time scale is reset when going back to main menu
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MainMenuBTN()
     {
+        Time.timeScale = 1f; // Ensure time scale is reset when going back to main menu
         SceneManager.LoadScene(0); // Assuming main menu is at index 0
+    }
+    public void PauseBTN()
+    {
+        blackPanel.SetActive(true);
+        PausePanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void ResumeBTN()
+    {
+        blackPanel.SetActive(false);
+        PausePanel.SetActive(false);
+        Time.timeScale = 1f;
     }
     #endregion
 }
