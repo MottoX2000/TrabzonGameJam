@@ -4,20 +4,6 @@ using System.Collections;
 
 public class MySceneManager : MonoBehaviour
 {
-    public static MySceneManager Instance;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void LoadScene(string sceneName)
     {

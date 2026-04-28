@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] GameObject blackPanel;
-    [SerializeField] GameObject GameOverPanel, PausePanel;
+    [SerializeField] GameObject GameOverPanel, PausePanel, WinPanel;
     [SerializeField] TextMeshProUGUI timerTXT;
     [SerializeField] GameObject knifeIMG, pistolIMG;
 
@@ -47,14 +47,14 @@ public class UIManager : MonoBehaviour
 
     public void ShowTimeAddedEffect(float amount)
     {
-        //if (GameManager.gameOver) return; // Don't show if game is already over
+        if (GameManager.gameOver) return; // Don't show if game is already over
         ShowFloatingText($"+{Mathf.RoundToInt(amount)}", Color.green);
         TriggerTimerPulse(Color.green);
     }
 
     public void ShowTimeRemovedEffect(float amount)
     {
-        //if(GameManager.gameOver) return; // Don't show if game is already over
+        if(GameManager.gameOver) return; // Don't show if game is already over
         ShowFloatingText($"-{Mathf.RoundToInt(amount)}", Color.red);
         TriggerTimerPulse(Color.red);
     }
@@ -62,6 +62,12 @@ public class UIManager : MonoBehaviour
     {
         blackPanel.SetActive(true);
         GameOverPanel.SetActive(true);
+    }
+
+    public void ShowWinPanel()
+    {
+        blackPanel.SetActive(true);
+        WinPanel.SetActive(true);
     }
     #endregion
 

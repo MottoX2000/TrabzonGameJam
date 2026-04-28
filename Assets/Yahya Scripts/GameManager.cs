@@ -30,8 +30,11 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         // Win effect
+        gameOver = true;
         Debug.Log("You Win!");
-        Time.timeScale = 0; // For now
+        SoundManager.Instance.PlaySFX("Win");
+        TimeManager.Instance.SetTimer(0); // Ensure timer is at 0
+        Helper.DoAfterDelay(2f, () => UIManager.Instance.ShowWinPanel());
     }
     public void StartCriticalWarning()
     {

@@ -20,17 +20,12 @@ public class Boss : BaseEnemy
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private GameObject stunEffect;
 
-    public float Accelerate { get; private set; }
-    private Vector2 _lastUpdatePosition;
-    private float _lastSpeed;
-
     bool died = false;
     private bool _isAttacking = false;
     private bool _isStunned = false;
     private float _nextAttackTime = 0f;
     private Vector2 _attackDirection;
     private float _attackStartTime;
-
 
     protected override int Health
     {
@@ -61,21 +56,6 @@ public class Boss : BaseEnemy
         currentMovementSpeed = _movementSpeed;
         _rb = GetComponent<Rigidbody2D>();
         _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // Helps prevent passing through walls at high speeds
-        
-        _lastUpdatePosition = transform.position;
-        InvokeRepeating(nameof(TrackAcceleration), 0f, 0.2f);
-    }
-
-    private void TrackAcceleration()
-    {
-        Vector2 currentPosition = transform.position;
-        float distance = Vector2.Distance(currentPosition, _lastUpdatePosition);
-        float currentSpeed = distance / 0.2f;
-        
-        Accelerate = (currentSpeed - _lastSpeed) / 0.2f;
-        
-        _lastSpeed = currentSpeed;
-        _lastUpdatePosition = currentPosition;
     }
 
     private void Update()
@@ -97,9 +77,6 @@ public class Boss : BaseEnemy
         if (died || _isStunned || _playerTransform == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, _playerTransform.position);
-
-        if (Accelerate < 0.2f && Time.time - _attackStartTime > 0.5f)
-            EndAttack(); // If acceleration drops too low, end the attack (e.g., hit a wall or obstacle)
 
         if (_isAttacking)
         {
@@ -123,7 +100,23 @@ public class Boss : BaseEnemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (_isAttacking && collision.gameObject.CompareTag("Player"))
+    //    {
+    //        if (collision.gameObject.TryGetComponent<Player>(out Player playerScript))
+    //        {
+    //            playerScript.TakeDamage((int)_damage);
+    //        }
+    //        EndAttack();
+    //    }
+    //    else if (_isAttacking && !collision.gameObject.CompareTag("Enemy")) // Assumed hit wall
+    //    {
+    //        EndAttack();
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (_isAttacking && collision.gameObject.CompareTag("Player"))
         {
@@ -168,7 +161,6 @@ public class Boss : BaseEnemy
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        TimeManager.Instance.AddTime(3);
         animator.SetTrigger("getDamage");
         Debug.Log($"{name} {damage} hasar aldi! Kalan can: {Health}");
     }
@@ -176,17 +168,17 @@ public class Boss : BaseEnemy
     protected override void Die()
     {
         TimeManager.Instance.AddTime(_rewardTime);
+        GameManager.Instance.Win();
         Destroy(gameObject, 3f); // Delay to let death animation play
     }
 
     public override void Attack()
     {
         if (_isAttacking) return;
-
-        SoundManager.Instance.PlayMusic("BossStage");
         Debug.Log($"{name} ulti saldýrýsý yapýyor!");
         _isAttacking = true;
 
+        SoundManager.Instance?.PlaySFX("BossStage");
         _attackDirection = (_playerTransform.position - transform.position).normalized;
         _attackStartTime = Time.time;
 
